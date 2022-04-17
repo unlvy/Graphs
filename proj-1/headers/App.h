@@ -13,6 +13,7 @@ private:
     int printMenu();
     void readGraph();
     void printGraph();
+    void exportToGv();
 
     GraphReader m_reader;
     GraphWriter m_writer;

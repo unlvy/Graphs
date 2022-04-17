@@ -29,6 +29,7 @@ Graph* GraphReader::readAdjacencyMatrix(std::string filename) {
         }
 
         std::cout << "\nGraph read" << std::endl;
+        stream.close();
         return graph;
 
     } else {
@@ -61,6 +62,7 @@ Graph* GraphReader::readAdjacencyList(std::string filename) {
         }
 
         std::cout << "\nGraph read" << std::endl;
+        stream.close();
         return graph;
 
     } else {
@@ -101,6 +103,7 @@ Graph* GraphReader::readIncidenceMatrix(std::string filename) {
         
         graph->sort();
         std::cout << "\nGraph read" << std::endl;
+        stream.close();
         return graph;
 
     } else {

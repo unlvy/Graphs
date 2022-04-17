@@ -24,6 +24,7 @@ void App::run() {
             printGraph();
             break;
         case 4:
+            exportToGv();
             break;
         default:
             break;
@@ -41,7 +42,7 @@ int App::printMenu() {
         "-     2. Generate random graph    -\n"
         << (m_isGraphLoaded ? 
         "-     3. Print graph              -\n"
-        "-     4. Export graph to image    -\n"
+        "-     4. Export graph to .gv file -\n"
         : "") <<
         "-                                 -\n"
         "-     0. Exit                     -\n"
@@ -157,4 +158,16 @@ void App::printGraph() {
     default:
         return;
     }
+}
+
+void App::exportToGv() {
+    std::cout << "\n"
+        "-----------------------------------\n"
+        "-      Export graph to .gv file   -\n"
+        "-----------------------------------\n"
+        " Please provide filename: ";
+        std::string input;
+        std::cin.clear();
+        std::getline(std::cin, input);
+        m_writer.exportToGv(m_graph, input);
 }
