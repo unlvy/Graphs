@@ -28,10 +28,11 @@ Graph* GraphReader::readAdjacencyMatrix(std::string filename) {
             currentVerticeIndex++;
         }
 
+        std::cout << "\nGraph read" << std::endl;
         return graph;
 
     } else {
-        std::cerr << "Failed to open " << filename << std::endl;
+        std::cerr << "\nFailed to open " << filename << std::endl;
         return nullptr;
     }
 }
@@ -59,16 +60,17 @@ Graph* GraphReader::readAdjacencyList(std::string filename) {
             verticeIndex++;
         }
 
+        std::cout << "\nGraph read" << std::endl;
         return graph;
 
     } else {
-        std::cerr << "Failed to open " << filename << std::endl;
+        std::cerr << "\nFailed to open " << filename << std::endl;
         return nullptr;
     }
 }
 
 Graph* GraphReader::readIncidenceMatrix(std::string filename) {
-    
+
     std::ifstream stream(filename);
     if (stream.is_open()) {
 
@@ -77,19 +79,19 @@ Graph* GraphReader::readIncidenceMatrix(std::string filename) {
         int verticeIndex = 1;
         int edgeIndex;
         Graph* graph = new Graph();
+        std::map<int, int> edges;
 
         while (std::getline(stream, line)) {
             
             splitString(line, tokens);
             edgeIndex = 1;
-            std::map<int, int> edges;
 
             for (std::string token : tokens) { 
-                if (std::stoi(token)) {
-                    if (edges.find(edgeIndex) == edges.end()) {
-                        edges[edgeIndex] = verticeIndex;
-                    } else {
+                if (std::stoi(token)) {   
+                    if (edges.count(edgeIndex)) {
                         graph->pushEdge(new Edge(new Vertice(edges[edgeIndex]), new Vertice(verticeIndex), edgeIndex));
+                    } else {
+                        edges[edgeIndex] = verticeIndex;
                     }
                 }
                 edgeIndex++;
@@ -98,10 +100,11 @@ Graph* GraphReader::readIncidenceMatrix(std::string filename) {
         }
         
         graph->sort();
+        std::cout << "\nGraph read" << std::endl;
         return graph;
 
     } else {
-        std::cerr << "Failed to open " << filename << std::endl;
+        std::cerr << "\nFailed to open " << filename << std::endl;
         return nullptr;
     }
 }

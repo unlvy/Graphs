@@ -1,11 +1,17 @@
 #include "Graph.h"
 
-Graph::Graph() {}
+Graph::Graph() {
+    m_numVertices = 0;
+}
 
 Graph::~Graph() {
     for (Edge* edge : m_edges) {
         if (edge != nullptr) { delete edge; }
     }
+}
+
+int Graph::getNumVertices() {
+    return m_numVertices;
 }
 
 bool Graph::pushEdge(Edge* newEdge) {
@@ -46,11 +52,19 @@ bool Graph::pushEdge(Edge* newEdge) {
         }
     }
 
+    if (nv1_id > m_numVertices) { m_numVertices = nv1_id; }
+    if (nv2_id > m_numVertices) { m_numVertices = nv2_id; }
     m_edges.push_back(newEdge);
     return true;
 }
 
 bool Graph::popEdge(int index) {
+
+    // index is index of edge
+    // method probably needs improvement - does 
+    // not affect m_numVertices
+    // not used in proj-1
+
     int pos = -1;
     for (Edge* edge : m_edges) {
         pos++;
@@ -61,6 +75,10 @@ bool Graph::popEdge(int index) {
         }
     }
     return false;
+}
+
+std::vector<Edge*>& Graph::getEdges() {
+    return m_edges;
 }
 
 void Graph::sort() {
