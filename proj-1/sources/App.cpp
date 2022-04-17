@@ -19,6 +19,7 @@ void App::run() {
             readGraph();
             break;
         case 2:
+            randomGraph();
             break;
         case 3:
             printGraph();
@@ -99,6 +100,8 @@ void App::readGraph() {
     std::cin.clear();
     std::getline(std::cin, input);
 
+    if (m_graph != nullptr) { delete m_graph; }
+
     switch (option) {
     case 1:
         m_graph = m_reader.readAdjacencyMatrix(input);
@@ -113,6 +116,101 @@ void App::readGraph() {
         return;
     }
     m_isGraphLoaded = m_graph == nullptr ? false : true;
+}
+
+void App::randomGraph() {
+    std::cout << "\n"
+        "-----------------------------------\n"
+        "-      Create random graph        -\n"
+        "-----------------------------------\n"
+        " Insert number of vertices: ";
+    
+    int n;
+    std::string input;
+    std::cin.clear();
+    std::getline(std::cin, input);
+    try { n = std::stoi(input); }
+    catch (std::exception& e) { n = -1; }
+    while(n < 0) {
+        std::cout << " Bad entry. Please try again: ";
+        std::cin.clear();
+        std::getline(std::cin, input);
+        try { n = std::stoi(input); }
+        catch (std::exception& e) { n = -1; }
+    }
+
+    std::cout << "\n"
+        "-----------------------------------\n"
+        "-      Create random graph        -\n"
+        "-----------------------------------\n"
+        "- Options:                        -\n"
+        "-     1. Number of edges          -\n"
+        "-     2. Probability of edge      -\n"
+        "-                                 -\n"
+        "-     0. Cancel                   -\n"
+        "-----------------------------------\n"
+        " Please choose option: ";
+
+    int option;
+    std::cin.clear();
+    std::getline(std::cin, input);
+    try { option = std::stoi(input); }
+    catch (std::exception& e) { option = -1; }
+    while(option < 0 || option > 2) {
+        std::cout << " Bad entry. Please try again: ";
+        std::cin.clear();
+        std::getline(std::cin, input);
+        try { option = std::stoi(input); }
+        catch (std::exception& e) { option = -1; }
+    }
+
+    switch (option) {
+    case 0:
+        return;
+    case 1:
+
+        int l;
+        std::cout << " Please enter number: ";
+        std::cin.clear();
+        std::getline(std::cin, input);
+        try { l = std::stoi(input); }
+        catch (std::exception& e) { l = -1; }
+        while(l < 0 || l > (n * (n - 1)) / 2) {
+            std::cout << " Bad entry. Please try again: ";
+            std::cin.clear();
+            std::getline(std::cin, input);
+            try { l = std::stoi(input); }
+            catch (std::exception& e) { l = -1; }
+        }
+        if (m_graph != nullptr) { delete m_graph; }
+        m_graph = m_rGenerator.generate1(n, l);
+        break;
+
+    case 2:
+
+        double p;
+        std::cout << " Please enter number: ";
+        std::cin.clear();
+        std::getline(std::cin, input);
+        try { p = std::stod(input); }
+        catch (std::exception& e) { l = -1; }
+        while(p < 0.0 || p > 1.0) {
+            std::cout << " Bad entry. Please try again: ";
+            std::cin.clear();
+            std::getline(std::cin, input);
+            try { p = std::stod(input); }
+            catch (std::exception& e) { p = -1.0; }
+        }
+        if (m_graph != nullptr) { delete m_graph; }
+        m_graph = m_rGenerator.generate2(n, p);
+        break;
+
+    default:
+        return;
+    }
+
+    if (m_graph != nullptr) { m_isGraphLoaded = true; }
+
 }
 
 void App::printGraph() {
