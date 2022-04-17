@@ -167,8 +167,8 @@ void App::randomGraph() {
     switch (option) {
     case 0:
         return;
+        
     case 1:
-
         int l;
         std::cout << " Please enter number: ";
         std::cin.clear();
@@ -187,7 +187,6 @@ void App::randomGraph() {
         break;
 
     case 2:
-
         double p;
         std::cout << " Please enter number: ";
         std::cin.clear();

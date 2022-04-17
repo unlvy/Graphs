@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-project (main)
+project (proj-1)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -17,7 +17,7 @@ add_compile_options(${CMAKE_CXX_FLAGS})
 include_directories(${PROJECT_SOURCE_DIR}/headers)
 file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/sources/*.cpp)
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
+add_executable(${PROJECT_NAME}.exe main.cpp ${SOURCES})
 
-add_custom_target(run ./main)
-add_custom_target(check valgrind ./main)
+add_custom_target(run ./proj-1.exe)
+add_custom_target(check valgrind ./proj-1.exe)
