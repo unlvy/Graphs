@@ -7,7 +7,7 @@ cd build
 cmake ..  
 make
 ```  
-File 'proj-1.exe' should appear in 'build' directory.
+File `proj-1.exe` should appear in `build` directory.
 
 # Creating svg from .gv file
 In order to do that, you will need **Graphviz CLI** tool.  
