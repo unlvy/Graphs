@@ -1,0 +1,1 @@
+2. Write a program for randomization of simple graphs with given degrees of vertices. To this end, repeat the operation many times to replace a randomly selected pair of edges: ab and cd with a pair of ad and bc.
