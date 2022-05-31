@@ -1,0 +1,34 @@
+digraph {
+subgraph cluster_0 {
+   N0
+}
+subgraph cluster_1 {
+   N1
+   N2
+}
+subgraph cluster_2 {
+   N3
+   N4
+}
+subgraph cluster_3 {
+   N5
+   N6
+}
+subgraph cluster_4 {
+   N7
+}
+   N0 -> N1[label="0/7"]
+   N0 -> N2[label="0/3"]
+   N0 -> N4[label="0/8"]
+   N0 -> N5[label="0/8"]
+   N1 -> N3[label="0/1"]
+   N2 -> N4[label="0/3"]
+   N3 -> N4[label="0/9"]
+   N3 -> N5[label="0/5"]
+   N4 -> N1[label="0/8"]
+   N4 -> N6[label="0/5"]
+   N4 -> N7[label="0/5"]
+   N5 -> N7[label="0/4"]
+   N6 -> N5[label="0/8"]
+   N6 -> N7[label="0/5"]
+}
