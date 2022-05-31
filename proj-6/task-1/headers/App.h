@@ -18,6 +18,7 @@ private:
     void randomWalkPageRank();
     void powerIterationPageRank();
     int printMenu();
+    double calculateNorm(std::vector<double>& v1, std::vector<double>& v2);
 
     bool m_isGraphLoaded = false;
     std::map<std::string, std::vector<std::string>> m_adjList;

@@ -161,9 +161,9 @@ void App::powerIterationPageRank() {
             }
             newRank[i] = (1.0 - DAMPING_FACTOR) * val + DAMPING_FACTOR * 1.0 / static_cast<double>(size);
         }
-        iter++;
+        iter++;        
     }
-    while (std::sqrt(std::inner_product(rank.begin(), rank.end(), newRank.begin(), 0.0)) >= EPSILON && iter != 100);
+    while (calculateNorm(rank, newRank) >= EPSILON && iter != 100);
     std::cout << "Number of iterations: " << iter << std::endl;
 
     std::vector<std::pair<std::string, double>> result;
@@ -209,4 +209,12 @@ int App::printMenu() {
         catch (std::exception& e) { option = -1; }
     }
     return option;
+}
+
+double App::calculateNorm(std::vector<double>& v1, std::vector<double>& v2) {
+    double result = 0;
+    for (int i = 0; i < static_cast<int>(v1.size()); i++) {
+        result += std::pow(v1[i] - v2[i], 2);
+    }
+    return std::sqrt(result);
 }
